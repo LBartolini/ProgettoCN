@@ -1,4 +1,4 @@
-function [x, i, flag] = Bisezione(f, a, b, tolx)
+function [x, i, flag] = bisezione(f, a, b, tolx)
     flag = 0;
     fa = feval(f, a);
     fb = feval(f, b);

@@ -1,4 +1,4 @@
-function [x, i] = Newton(fun, deriv, x0, tolx, maxiter)
+function [x, i] = newton(fun, deriv, x0, tolx, maxiter)
     for i=1:maxiter
         x = x0 - feval(fun, x0)/feval(deriv, x0);
         err = abs(x-x0);

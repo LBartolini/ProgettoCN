@@ -1,4 +1,4 @@
-function [x, i] = Secanti(fun, x0, x1, tolx, maxiter)
+function [x, i] = secanti(fun, x0, x1, tolx, maxiter)
     fx0 = feval(fun, x0);
     fx1 = feval(fun, x1);
     for i=1:maxiter
