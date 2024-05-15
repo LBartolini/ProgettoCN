@@ -36,8 +36,11 @@ for i = n:-1:1
     x(i) = x(i) / A(i,i);
     x(1:i-1) = x(1:i-1)   - A(1:i-1, i) * x(i);
 end  
-% Norma del vettore residuo
-nr = norm(x(n+1:m));
-
 x = x(1:n);
+
+% Norma del vettore residuo
+w = [0.5 0.5 0.75 0.25 0.25].';
+r = A*x - b;
+nr = sqrt(sum(w.*(r.^2)));
+return;
 end
