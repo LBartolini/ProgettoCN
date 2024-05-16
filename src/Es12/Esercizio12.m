@@ -1,10 +1,12 @@
-for n=1:100
+N=100;
+
+for n=1:N
     An = ones(n).*-1;
     An = An + diag(ones(1, n)*n + 1);
 
     LDLt = mialdlt(An);
-    D = diag(diag(LDLt));
-    
-    
+
+    plot((1:n), diag(LDLt));
+    hold on
 end
-plot((1:n), diag(D), '*');
+hold off
