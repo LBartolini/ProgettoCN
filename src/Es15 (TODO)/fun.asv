@@ -1,0 +1,16 @@
+function [f, Jacobian] = fun(x)
+N = 50;
+
+syms xi [1 length(x)]
+
+
+alfa = 2;
+beta = -1.1;
+e = ones(N, 1);
+Q = zeros(N) + diag(ones(1, N)*4) + diag(ones(1, N-1), 1) + diag(ones(1, N-1), -1);
+
+f =.5*xi.'*Q*xi + e.'*(cos(alfa*xi) + beta*exp(-xi));
+disp(f);
+Jacobian = jacobian(f, xi);
+
+end

@@ -6,7 +6,7 @@ disp("1e-3");
 [x, i] = bisezione(f, -0.1, 1, tolx);
 disp("Bisezione " + x + " Iterazioni: " + i);
 [x, i] = newton(f, df, 1, tolx, 1000);
-disp("Bisezione " + x + " Iterazioni: " + i);
+disp("Newton " + x + " Iterazioni: " + i);
 [x, i] = secanti(f, 1, 0.9, tolx, 1000);
 disp("Secanti " + x + " Iterazioni: " + i);
 
@@ -15,7 +15,7 @@ disp("1e-6");
 [x, i] = bisezione(f, -0.1, 1, tolx);
 disp("Bisezione " + x + " Iterazioni: " + i);
 [x, i] = newton(f, df, 1, tolx, 1000);
-disp("Bisezione " + x + " Iterazioni: " + i);
+disp("Newton " + x + " Iterazioni: " + i);
 [x, i] = secanti(f, 1, 0.9, tolx, 1000);
 disp("Secanti " + x + " Iterazioni: " + i);
 
@@ -24,7 +24,7 @@ disp("1e-9");
 [x, i] = bisezione(f, -0.1, 1, tolx);
 disp("Bisezione " + x + " Iterazioni: " + i);
 [x, i] = newton(f, df, 1, tolx, 1000);
-disp("Bisezione " + x + " Iterazioni: " + i);
+disp("Newton " + x + " Iterazioni: " + i);
 [x, i] = secanti(f, 1, 0.9, tolx, 1000);
 disp("Secanti " + x + " Iterazioni: " + i);
 
@@ -33,6 +33,6 @@ disp("1e-12");
 [x, i] = bisezione(f, -0.1, 1, tolx);
 disp("Bisezione " + x + " Iterazioni: " + i);
 [x, i] = newton(f, df, 1, tolx, 1000);
-disp("Bisezione " + x + " Iterazioni: " + i);
+disp("Newton " + x + " Iterazioni: " + i);
 [x, i] = secanti(f, 1, 0.9, tolx, 1000);
 disp("Secanti " + x + " Iterazioni: " + i);
