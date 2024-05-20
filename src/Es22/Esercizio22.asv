@@ -1,0 +1,4 @@
+nn = (1:100);
+ll = lebesgue(-5, 5, nn, 1);
+
+plot(n, ll);
