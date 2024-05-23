@@ -25,16 +25,29 @@ end
 if mod(n/k, 2) ~= 0
     error("n deve essere un multiplo pari di k");
 end
+
+u=1;
+if (mod(k,2) == 0)
+    u=2;
+end
+
 c = pesiNewtonCotes(k);
 x = linspace(a, b, (n+1)+(k-1)*n);
 fx = feval(fun, x);
-h = (b-a)/((n+1)+(k-1)*n);
+hf = (b-a)/((n+1)+(k-1)*n);
+h = (b-a)/((n/2+1)+(k-1)*n/2);
+
+I = 0;
+for i=0:n/2-1
+    tmp = (i*2*k:2:(i+1)*2*k)+1;
+    I = I + h*sum(fx( tmp ).*c);
+end
 
 If = 0;
 for i=0:n-1
-    If = If + h*sum(fx((i*k:(i+1)*k)+1).*c);
+    If = If + hf*sum(fx((i*k:(i+1)*k)+1).*c);
 end
 
-err = 0;
+err = (If-I)/(2^(k+u) - 1);
 return;
 end
