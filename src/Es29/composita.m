@@ -22,7 +22,7 @@ end
 if a > b
     error("Intervallo errato");
 end
-if mod(mod(n, k), 2) ~= 0
+if mod(n/k, 2) ~= 0
     error("n deve essere un multiplo pari di k");
 end
 c = pesiNewtonCotes(k);
@@ -31,8 +31,8 @@ fx = feval(fun, x);
 h = (b-a)/((n+1)+(k-1)*n);
 
 If = 0;
-for i=1:n
-    If = If + h*sum(fx((i-1)*k:(i*k) + 1).*c);
+for i=0:n-1
+    If = If + h*sum(fx((i*k:(i+1)*k)+1).*c);
 end
 
 err = 0;
