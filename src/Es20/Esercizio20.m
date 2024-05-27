@@ -10,7 +10,6 @@ x = linspace(0, 5, 1000);
 yHermite = hermite(xi, fi, f1i, x);
 yTrue = fun(x);
 
-
 plot(x, yTrue);
 hold on
 
