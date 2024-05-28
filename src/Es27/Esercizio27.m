@@ -1,9 +1,24 @@
 rng(0);
+
 xi = linspace(0, 2*pi, 101);
-yi = sin(xi)+rand(size(xi))*.05;
+yi = sin(xi) + rand(size(xi)) * 0.05;
 
-V = vander(xi).';
+n = length(xi);
 
-a = yi*V^(-1);
+% Matrice di Vandermounde di grado 3
+V = zeros(n, 4);
+for i = 1:n
+    V(i, :) = [xi(i)^3, xi(i)^2, xi(i), 1];
+end
 
-plot((1:101), a);
+a = V \ yi';
+yi_fit = polyval(a, xi);
+
+figure;
+plot(xi, yi, '*', 'DisplayName', 'Dati originali'); % Dati originali
+hold on;
+plot(xi, yi_fit, '-', 'DisplayName', 'Polinomio di grado 3'); % Polinomio approssimante
+legend show;
+xlabel('xi');
+ylabel('yi');
+title('Approssimazione ai minimi quadrati con polinomio di grado 3');
