@@ -36,19 +36,20 @@ x = x0;
 for i=1:maxit
     x0 = x;
     [f, Jacobian] = fun(x0);
-    
+
     b = -f;
     A = Jacobian;
 
     x = x0 + mialu(A, b); % Fattorizzazione e aggiornamento di xn+1
 
     % Controllo sul criterio di arresto
-    if abs(x - x0) <= tol * (1 + abs(x0))        
+    err = norm((x-x0)./(1+abs(x0)), 1);
+    if err <= tol       
         break; 
     end   
 end   
 nit = i;
-if abs(x - x0) > tol * (1 + abs(x0))
+if norm((x-x0)./(1+abs(x0)), 1) > tol
     disp('Tolleranza non raggiunta');
 end   
 return

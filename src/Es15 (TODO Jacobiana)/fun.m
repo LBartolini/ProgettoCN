@@ -16,7 +16,8 @@ f =.5*xi.'*Q*xi + e.'*(cos(alfa*xi) + beta*exp(-xi));
 gradient = jacobian(f, xi).';
 Jacobian = jacobian(gradient, xi);
 
-gradient = subs(gradient, xi, x);
-Jacobian = subs(Jacobian, xi, x);
+Jacobian = eval(subs(Jacobian, xi, x));
+gradient = eval(subs(gradient, xi, x));
+
 return;
 end
