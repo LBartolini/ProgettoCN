@@ -1,4 +1,4 @@
-function [f, Jacobian] = fun(x)
+function [gradient, Jacobian] = fun(x)
 N = 50;
 
 if N ~= length(x)
@@ -13,9 +13,10 @@ e = ones(N, 1);
 Q = zeros(N) + diag(ones(1, N)*4) + diag(ones(1, N-1), 1) + diag(ones(1, N-1), -1);
 
 f =.5*xi.'*Q*xi + e.'*(cos(alfa*xi) + beta*exp(-xi));
-Jacobian = jacobian(f, xi);
+gradient = jacobian(f, xi).';
+Jacobian = jacobian(gradient, xi);
 
-f = subs(f, xi, x);
+gradient = subs(gradient, xi, x);
 Jacobian = subs(Jacobian, xi, x);
-
+return;
 end
