@@ -1,56 +1,51 @@
 function [x, nit] = newton(fun, x0, tol, maxit)
-% 
-%   [x, nit] = newton(fun, x0, tol, maxit)
-% 
-% Metodo di newton per la risoluzione di sistemi di equazioni non lineari
-%  
-% Input:
-%   fun: funzione nella forma [f, jacobian] = fun(x) se il sistema da risolvere è f(x)=0
-%   x0: vettore valori iniziali
-%   tol: tolleranza
-%   maxit: numero massimo di iterazioni
-% 
-% Output:
-%   x: soluzione del sistema 
-%   nit: numero di iterazioni eseguite
 %
-% Criterio d'arresto: |Xn+1 - Xn| <= tol * (1 + |Xn|)
-
-%Valori di default per i parametri in ingresso
-if  nargin == 2
-    tol = 1e-3; 
-    maxit = 1000;
-elseif nargin == 3     
-    maxit = 1000;
-end
+%   [x, nit] = newton(fun, x0, tol, maxit)
+%
+%   Risolve sistemi non lineare di equazioni con il metodo di Newton.
+%
+%   Input:
+%   fun- funzione data, nella forma [f, Jacobian]
+%   x0- ascisse iniziali
+%   tol- tolleranza desiderata
+%   maxit- massimo numero di iterazioni
+%
+%   Output:
+%   x- soluzioni
+%   nit- iterazioni svolte
+%
 
 % Controlli di consistenza
-if tol <= 0
-    error('Tolleranza non valida'); 
-end   
-if maxit <= 0
-    error('Numero di iterazioni non valido');
-end   
+if nargin < 2 
+    error('Numero di input errato');
+elseif nargin==2
+    tol=1e-3;
+    maxit=1000;
+elseif nargin==3
+    maxit=1000;
+end
+
+if tol<0
+    error('tol non può essere negativa');
+elseif maxit<=0
+    error('maxit non può essere negativo');
+end
 
 x = x0;
-for i=1:maxit
+for nit = 1:maxit
     x0 = x;
-    [f, Jacobian] = fun(x0);
-
+    [f, jac] = feval(fun, x0);
     b = -f;
-    A = Jacobian;
+    A = jac;
+    x = x0 + LU(A,b);
+    if norm(x - x0, 1) <= tol * (1 + norm(x0, 1))
+        break
+    end
+end
 
-    x = x0 + mialu(A, b); % Fattorizzazione e aggiornamento di xn+1
-
-    % Controllo sul criterio di arresto
-    err = norm((x-x0)./(1+abs(x0)), 1);
-    if err <= tol       
-        break; 
-    end   
-end   
-nit = i;
-if norm((x-x0)./(1+abs(x0)), 1) > tol
+if norm(x - x0, 1) > tol * (1 + norm(x0, 1))
     disp('Tolleranza non raggiunta');
-end   
-return
+end
+
+return;
 end
