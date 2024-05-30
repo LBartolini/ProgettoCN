@@ -42,12 +42,12 @@ for i=1:maxit
     x = x0 + mialu(A, b); % Fattorizzazione e aggiornamento di xn+1
 
     % Controllo sul criterio di arresto
-    if abs(x - x0) <= tol * (1 + abs(x0))        
+    if norm(x - x0, 1) <= tol * (1 + norm(x0, 1))        
         break; 
     end   
 end   
 nit = i;
-if abs(x - x0) > tol * (1 + abs(x0))
+if norm(x - x0, 1) > tol * (1 + norm(x0, 1))
     disp('Tolleranza non raggiunta');
 end   
 return

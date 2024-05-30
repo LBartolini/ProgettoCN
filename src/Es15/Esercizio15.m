@@ -13,9 +13,11 @@ end
 
 pointer = ['*', 'o', '+'];
 for i = 1:length(tols)
-    plot(1:N, sols(:, i), pointer(i));
-    hold on;
+    plot(1:N, sols(:, i), pointer(i), "DisplayName", num2str(tols(i)));
+    hold on
 end
-hold off;
-xlabel('Posizione nel vettore soluzione')
-title('Soluzione');
+hold off
+xlabel('Posizione nel vettore soluzione');
+ylabel('Valore');
+title('Soluzioni');
+legend('Location', 'Best');

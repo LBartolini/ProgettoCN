@@ -16,7 +16,12 @@ for n=1:50
     normLagrange(n) = norm(y-yLagrange);
     normNewton(n) = norm(y-yNewton);
 end
-semilogy((2:2:100), normLagrange);
+
+semilogy((2:2:100), normLagrange,'DisplayName','Lagrange');
 hold on
-semilogy((2:2:100), normNewton);
+semilogy((2:2:100), normNewton,'DisplayName','Newton');
 hold off
+title("Errore di interpolazione della funzione di Runge");
+xlabel("Grado del polinomio");
+ylabel("Errore");
+legend

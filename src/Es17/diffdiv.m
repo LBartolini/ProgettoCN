@@ -1,9 +1,9 @@
 function df = diffdiv(x, f)
-% 
+%
 %   df = divdif(x, f)
-%  
+%
 % Calcola le differenze divise sulle coppie (xi, fi)
-% 
+%
 % Input:
 %   x: vettore delle ascisse
 %   f: vettore delle ordinate
@@ -13,13 +13,13 @@ function df = diffdiv(x, f)
 n = length(x);
 if length(f) ~= n
     error('Dati errati');
-end   
-n = n-1; 
+end
+n = n-1;
 df = f;
 for j=1:n
-    for    i = n+1:-1:j+1        
-        df(i) = (df(i) - df(i-1))/(x(i) - x(i-   j));   
-    end   
-end   
+    for    i = n+1:-1:j+1
+        df(i) = (df(i) - df(i-1))/(x(i) - x(i-   j));
+    end
+end
 return;
 end

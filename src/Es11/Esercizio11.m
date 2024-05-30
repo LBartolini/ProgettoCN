@@ -1,3 +1,4 @@
+norms = (1:15);
 for n=1:15
     % soluzione reale
     xn = ones(1, n).';
@@ -11,6 +12,10 @@ for n=1:15
     bn = bn.';
 
     x = mialu(An, bn);
-    disp(x);
-    disp(norm(x-xn));
+    norms(i) = norm(x-xn);
 end 
+
+semilogy((1:15), norms);
+title("Norma di x-xn");
+xlabel("n");
+ylabel("Norma (scala logaritmica)");

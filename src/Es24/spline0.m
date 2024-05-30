@@ -10,10 +10,10 @@ function yy = spline0(x, y, xx)
 %   y - vettore dei valori della funzione assunti sulle ascisse
 %      interpolanti
 %   xx - vettore delle ascisse dove si calcola il valore della spline
-% 
+%
 % Output:
 %   yy - vettore delle ordinate calcolate sulle ascisse
-% 
+%
 
 n = length(x);
 
@@ -22,10 +22,10 @@ if   length(y) ~= n
     error('Dati errati');
 end
 
-n = n-1; 
+n = n-1;
 h(1:n) = x(2:n+1) - x(1:n);
 b = h(2:n-1)./(h(2:n-1) + h(3:n)); % phi
- c = h(2:n-1)./(h(1:n-2) + h(2:n-1)); % csi
+c = h(2:n-1)./(h(1:n-2) + h(2:n-1)); % csi
 a(1:n-1) = 2;
 df = ddspline(x, y, 3);
 
@@ -36,13 +36,14 @@ yy = zeros(size(xx));
 
 j = 1;
 for i=2:n+1
-    ri  = y(i-1) - (h(i-1)^2)/6 * (m(i-1)); 
+    ri  = y(i-1) - (h(i-1)^2)/6 * (m(i-1));
     qi = (y(i) - y(i-1))/h(i-1) - h(i-1)/6*(m(i) - m(i-1));
-    while j <= length(xx) && xx(j) <= x(i) 
-        yy(j) = ((xx(j) - x(i-1))^3 * m(i) + (x(i) - xx(j))^3 * m(i-1))/ ...  
-            (6*h(i-1)) + qi*(xx(j) - x(i-1)) + ri;  
+    while j <= length(xx) && xx(j) <= x(i)
+        yy(j) = ((xx(j) - x(i-1))^3 * m(i) + (x(i) - xx(j))^3 * m(i-1))/ ...
+            (6*h(i-1)) + qi*(xx(j) - x(i-1)) + ri;
         j = j+1;
-    end 
-end  
+    end
+end
+
 return;
-end 
+end

@@ -10,10 +10,10 @@ x = linspace(0, 5, 1000);
 yHermite = hermite(xi, fi, f1i, x);
 yTrue = fun(x);
 
-plot(x, yTrue);
+plot(x, yTrue, "DisplayName", "True");
 hold on
 
-plot(x, yHermite);
+plot(x, yHermite, "DisplayName", "Hermite");
 hold on
 
 dfTrue = funPrime(x);
@@ -26,9 +26,13 @@ for i = 1:length(f1i)
 end
 dd = ddHermite(xi, fi);
 
-plot(x, hornerDerivata(x, dd, xiRaddoppiato));
+plot(x, hornerDerivata(x, dd, xiRaddoppiato), "DisplayName", "Derivata Hermite");
 hold on
 
-plot(x, dfTrue);
+plot(x, dfTrue, "DisplayName", "Derivata True");
 hold off
 
+title("Approssimazione di Hermite");
+xlabel("x");
+ylabel("y");
+legend("Location", "Best");

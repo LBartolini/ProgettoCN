@@ -1,12 +1,12 @@
 function dy = hornerDerivata(x, ai, xi)
 %
-% dy = hornerDerivata(x, ai, xi) 
+% dy = hornerDerivata(x, ai, xi)
 %      Calcola la derivata prima nel punto x
 %       del polinomio p(x) dove ai sono i coefficienti della base di Newton
 %
 % Input:
-%   x: Ascissa su cui valutare la derivata 
-%   ai: Coefficienti del pominomio 
+%   x: Ascissa su cui valutare la derivata
+%   ai: Coefficienti del pominomio
 %   xi: Ascisse su cui valutare la base di Newton
 %
 % Output:
@@ -18,7 +18,7 @@ if n ~= length(xi)-1
 end
 
 dy = 0;
-b = ai(n); 
+b = ai(n);
 
 for k = n-1:-1:1
     dy = b + (x - xi(k)) * dy;
